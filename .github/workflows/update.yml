@@ -1,0 +1,54 @@
+name: update
+
+# The formula is built by kalku's own release, from the checksums of the
+# files it publishes, and attached to the release as `kalku.rb`. This
+# workflow only copies it here, with this repository's own token, so the
+# tap needs no credential for kalku and kalku needs none for the tap.
+on:
+  workflow_dispatch:
+  schedule:
+    # Releases are rare; a daily check is enough, and kalku's release
+    # asks for this workflow directly when one happens.
+    - cron: '17 6 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Take the formula from the latest kalku release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          gh release download --repo lnds/kalku --pattern kalku.rb --dir . --clobber
+          mkdir -p Formula
+          mv kalku.rb Formula/kalku.rb
+
+      # A formula that names a tarball nobody can download is worse than
+      # no formula: the failure lands on a user's machine at install time.
+      - name: Check every url and checksum in it
+        run: |
+          set -eu
+          grep -o 'https://[^"]*\.tar\.gz' Formula/kalku.rb | while read -r url; do
+            sha="$(curl -fsSL "$url" | sha256sum | cut -d' ' -f1)"
+            grep -q "$sha" Formula/kalku.rb || { echo "checksum missing for $url"; exit 1; }
+            echo "ok: $url"
+          done
+
+      - name: Commit it, if it changed
+        run: |
+          set -eu
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula/kalku.rb
+          if git diff --cached --quiet; then
+            echo "the formula is already current"
+          else
+            git commit -m "kalku $(awk -F'\"' '/^  version/ {print $2}' Formula/kalku.rb)"
+            git push
+          fi
