@@ -2,25 +2,25 @@
 class Kalku < Formula
   desc "Mutation testing for humans, CI, and coding agents"
   homepage "https://github.com/lnds/kalku"
-  version "0.3.0"
+  version "0.5.0"
   license any_of: ["MIT", "Apache-2.0"]
 
   on_macos do
     on_arm do
-      url "https://github.com/lnds/kalku/releases/download/v0.3.0/kalku-v0.3.0-darwin-arm64.tar.gz"
-      sha256 "a865fd3812a9fd9c1159facc1e62454565ba51ce1117364f919fbbad01b3f908"
+      url "https://github.com/lnds/kalku/releases/download/v0.5.0/kalku-v0.5.0-darwin-arm64.tar.gz"
+      sha256 "aa663c42e95393e8fc21cdb17df10c295275c8debbe6128d3d90dca35dfd10ad"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/lnds/kalku/releases/download/v0.3.0/kalku-v0.3.0-linux-x86_64.tar.gz"
-      sha256 "8a9589374aa737a609a0a5a124fc50c92ff5bb754b456964f34ee9c6ef56b9c2"
+      url "https://github.com/lnds/kalku/releases/download/v0.5.0/kalku-v0.5.0-linux-x86_64.tar.gz"
+      sha256 "d101ce11a0eb92d0fcbdf506ba217bffc7c9b3946d826941da779ba99297689f"
     end
   end
 
   def install
-    bin.install "kalku", "kalku-kaikai"
+    bin.install "kalku", "kalku-kaikai", "kalku-rust", "kalku-python"
   end
 
   test do
