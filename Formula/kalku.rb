@@ -2,25 +2,26 @@
 class Kalku < Formula
   desc "Mutation testing for humans, CI, and coding agents"
   homepage "https://kalku.tools"
-  version "0.21.0"
+  version "0.22.0"
   license any_of: ["MIT", "Apache-2.0"]
 
   on_macos do
     on_arm do
-      url "https://github.com/lnds/kalku/releases/download/v0.21.0/kalku-v0.21.0-darwin-arm64.tar.gz"
-      sha256 "f01dd896abe2165b8beb80208813da5cff77b6f1c8aefdf170a513f857249133"
+      url "https://github.com/lnds/kalku/releases/download/v0.22.0/kalku-v0.22.0-darwin-arm64.tar.gz"
+      sha256 "6900629ea82834163fdaeec5d8b15404a3200d45ff0c19ca78c6c20bf9fee265"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/lnds/kalku/releases/download/v0.21.0/kalku-v0.21.0-linux-x86_64.tar.gz"
-      sha256 "493fdd5ad81cf56c790831e092be64bce0cb4c8abf851f75dd80909bc5457f75"
+      url "https://github.com/lnds/kalku/releases/download/v0.22.0/kalku-v0.22.0-linux-x86_64.tar.gz"
+      sha256 "ae33cd07e71ecb92a80e6a5d5a8fea29f296df18f4e243b7d0a5fa2cbe7ab5b9"
     end
   end
 
   def install
-    bin.install "kalku", "kalku-kaikai", "kalku-rust", "kalku-python", "kalku-java", "kalku-go", "kalku-typescript"
+    bin.install "kalku", "kalku-kaikai", "kalku-rust", "kalku-python", "kalku-java", "kalku-go", "kalku-typescript",
+                "kalku-cpp"
   end
 
   test do
