@@ -2,20 +2,20 @@
 class Kalku < Formula
   desc "Mutation testing for humans, CI, and coding agents"
   homepage "https://kalku.tools"
-  version "0.29.0"
+  version "0.30.0"
   license any_of: ["MIT", "Apache-2.0"]
 
   on_macos do
     on_arm do
-      url "https://github.com/lnds/kalku/releases/download/v0.29.0/kalku-v0.29.0-darwin-arm64.tar.gz"
-      sha256 "6023f6acd62a6687640a4ca5342b3fa07e67bd0d95a027f13d35a490c04ad04d"
+      url "https://github.com/lnds/kalku/releases/download/v0.30.0/kalku-v0.30.0-darwin-arm64.tar.gz"
+      sha256 "e56b27d04f198f0e48e90db4bca6b2462d451dd7efa436549d059016cf632901"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/lnds/kalku/releases/download/v0.29.0/kalku-v0.29.0-linux-x86_64.tar.gz"
-      sha256 "e4f1d1e596b936aefb563095e52299a9e99b6fdc30d6925c43d131d9a3a555b1"
+      url "https://github.com/lnds/kalku/releases/download/v0.30.0/kalku-v0.30.0-linux-x86_64.tar.gz"
+      sha256 "c2be1275b42218fe943f8eb32d27cfabe80092586966f878a1d9acc0821bcdbb"
     end
   end
 
